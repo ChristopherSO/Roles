@@ -1,0 +1,93 @@
+
+html, body {
+	height: 100%;
+}
+
+.container-fluid.body
+{
+    height: 85%;
+    width: 100%
+}
+
+header
+{
+    height: 50px;
+    font-size: 2em;
+}
+
+.container-fluid
+{
+    display:table;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+.row
+{
+    height: 100%;
+    display: table-row;
+}
+
+[class^="col"] {
+	display: table-cell;
+}
+
+[class^="col"].no-float {
+	float: none;
+}
+
+#members {
+	background-color: #dfd;
+}
+
+#calendar {
+	background-color: #ddf;
+	padding: 0 30px;
+}
+
+#results {
+	background-color: #fdd;
+}
+
+h2 {
+	font-size: 1.25em;
+}
+
+ul {
+	padding-left: 25px;
+}
+
+li {
+	font-size: 1em;
+}
+
+li > div {
+	padding: 1px 0;
+}
+
+.table {
+	width: 0;
+	margin: 0 auto;
+}
+
+th, td {
+	border-top: 0 !important;
+	border-bottom: 0 !important;
+}
+
+th {
+	text-align: center;
+	padding-bottom: 0 !important;
+}
+
+.day {
+	width: 200px;
+	min-height: 120px;
+	background-color: white;
+}
+
+.hovered {
+	background-color: lightblue;
+	padding: 1px 5px;
+    margin: 0 10px 0 -5px;
+}

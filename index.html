@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="rol">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="libs/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<script type="text/javascript" src="libs/js/angular.min.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/models/Members.js"></script>
+</head>
+
+<body ng-controller="MainController as rol">
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12 no-float">
+			<h1>Rol de Julio</h1>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid body">
+	<div class="row">
+		<div id="members" class="col-md-2 no-float">
+			<h2>Miembros del equipo</h2>
+			<p>Hellen is a director? {{rol.hellen.isDirector}}</p>
+			<ul>
+				<li ng-repeat="member in rol.members">
+					<div 
+						ng-class="{hovered: isHovered}"
+						ng-mouseenter = "isHovered = true"
+						ng-mouseleave = "isHovered = false">
+    						{{member.name}}
+    				</div>
+				</li>
+			</ul>
+		</div>
+
+		<div id="calendar" class="col-md-5 no-float">
+			<table class="table table-condensed">
+				<thead>
+					<tr>
+						<th>Sábado</th>
+						<th>Domingo</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="week in rol.weeks">
+						<td>
+							<div class="day saturday">
+								<span></span>
+							</div>
+						</td>
+						<td>
+							<div class="day sunday">
+								<span></span>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			  </table>
+		</div>
+
+		<div id="results" class="col-md-5 no-float"></div>
+	</div>
+</div>
+
+</body>
+
+</html>
