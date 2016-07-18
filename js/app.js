@@ -4,8 +4,14 @@
 
 	app.controller('MainController', function(Member) {
 
+		this.members = [];
+
+		// Initialize the member model objects
+		for (var i=0; i<membersData.length; i++) {
+			this.members.push(Member.build(membersData[i]));
+		}
+
 		this.monthNames = monthNames;
-		this.members = members;
 		this.weeks;
 
 		this.hellen = new Member(
@@ -15,7 +21,6 @@
 			true,
 			true
 		);
-		console.log(this.hellen);
 
 		this.chris = Member.build({
 			name: "Christopher",
@@ -24,7 +29,22 @@
 			isChorister: true,
 			isSoundman: false
 		});
-		console.log(this.chris);
+
+		angular.element(document).ready(function () {
+			
+			var month = 6, // Julio (7-1)
+				year = 2016;
+
+			for (var d = new Date(year, month); d <= new Date(year, month, 0); d.setDate(d.getDate() + 1)) {
+				if (d.getDay() == 0) {
+					var week = [];
+					var saturday = 
+					week.push()
+					weeks.push()
+				}
+			}
+
+		});
 	});
 
 	app.factory('Member', function () {
@@ -62,27 +82,13 @@
 		return Member;
 	});
 
-	angular.element(document).ready(function () {
-			
-		var month = 6, // Julio (7-1)
-			year = 2016;
 
-		for (var d = new Date(year, month); d <= new Date(year, month, 0); d.setDate(d.getDate() + 1)) {
-			if (d.getDay() == 0) {
-				var week = [];
-				var saturday = 
-				week.push()
-				weeks.push()
-			}
-		}
-
-	});
 
 	var weeks = [];
 
 	var monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre"];
 
-	var members = [
+	var membersData = [
 		{
 			name: "Hellen",
 			isDirector: true,
@@ -119,7 +125,7 @@
 			isSoundman: false
 		},
 		{
-			name: "Ronald",
+			name: "Jerry",
 			isDirector: false,
 			isMusician: false,
 			isChorister: false,
