@@ -38,11 +38,12 @@ header
 
 #members {
 	background-color: #dfd;
+	vertical-align: top;
 }
 
 #calendar {
 	background-color: #ddf;
-	padding: 0 30px;
+	padding-top: 10px;
 }
 
 #results {
@@ -51,6 +52,10 @@ header
 
 h2 {
 	font-size: 1.25em;
+}
+
+h3 {
+	font-size: 1.15em;
 }
 
 ul {
@@ -70,6 +75,14 @@ li > div {
 	margin: 0 auto;
 }
 
+#calendar > table > thead > tr > th {
+	margin-bottom: 4px;
+}
+
+#calendar td {
+    padding: 2px 4px;
+}
+
 th, td {
 	border-top: 0 !important;
 	border-bottom: 0 !important;
@@ -80,10 +93,22 @@ th {
 	padding-bottom: 0 !important;
 }
 
+.day-header {
+	width: 200px;
+	display: inline-block;
+	text-align: center;
+}
+
 .day {
 	width: 200px;
 	min-height: 120px;
 	background-color: white;
+	display: inline-block;
+}
+
+.day > span {
+    margin: 3px 5px;
+    position: absolute;
 }
 
 .hovered {
@@ -91,3 +116,4 @@ th {
 	padding: 1px 5px;
     margin: 0 10px 0 -5px;
 }
+

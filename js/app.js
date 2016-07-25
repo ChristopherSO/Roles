@@ -13,38 +13,34 @@
 		console.log(Member.appearances);
 
 		this.monthNames = monthNames;
-		this.weeks;
-
-		this.hellen = new Member(
-			"Hellen",
-			true,
-			false,
-			true,
-			true
-		);
-
-		this.chris = Member.build({
-			name: "Christopher",
-			isDirector: false,
-			isMusician: true,
-			isChorister: true,
-			isSoundman: false
-		});
+		this.weeks = weeks;
 
 		angular.element(document).ready(function () {
 			
-			var month = 6, // Julio (7-1)
+			var month = 4, // Julio (7-1)
 				year = 2016;
 
-			for (var d = new Date(year, month); d <= new Date(year, month, 0); d.setDate(d.getDate() + 1)) {
-				if (d.getDay() == 0) {
-					var week = [];
-					var saturday = 
-					week.push()
-					weeks.push()
+			for (var d = new Date(year, month); d <= new Date(year, month+1, 0); d.setDate(d.getDate() + 1)) {
+				if (d.getDay() == 6) { // If saturday
+					var week = {};
+					week.saturday = d.getDate();
+
+					// Add one day to get sunday
+					d.setDate(d.getDate() + 1);
+
+					if (d.getMonth() == month) { // Check if still in the analized month
+						week.sunday = d.getDate();
+					}
+
+					weeks.push(week);
+				} else if (d.getDay() == 0) { // If first day of the month is sunday
+					var week = {};
+					week.sunday = d.getDate();
+
+					weeks.push(week);
 				}
 			}
-
+			console.log(weeks);
 		});
 	});
 

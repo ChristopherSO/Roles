@@ -21,6 +21,7 @@
 
 <div class="container-fluid body">
 	<div class="row">
+
 		<div id="members" class="col-md-2 no-float">
 			<h2>Miembros del equipo</h2>
 			<ul>
@@ -46,13 +47,13 @@
 				<tbody>
 					<tr ng-repeat="week in rol.weeks">
 						<td>
-							<div class="day saturday">
-								<span></span>
+							<div class="day saturday" ng-if="week.hasOwnProperty('saturday')">
+								<span>{{week.saturday}}</span>
 							</div>
 						</td>
 						<td>
-							<div class="day sunday">
-								<span></span>
+							<div class="day sunday" ng-if="week.hasOwnProperty('sunday')">
+								<span>{{week.sunday}}</span>
 							</div>
 						</td>
 					</tr>
