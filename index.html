@@ -4,9 +4,10 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="libs/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
-	<script type="text/javascript" src="libs/js/angular.min.js"></script>
-	<script type="text/javascript" src="js/app.js"></script>
-	<script type="text/javascript" src="js/models/Members.js"></script>
+	<script src="libs/js/angular.min.js"></script>
+	<script src="libs/js/angular-drag-and-drop-lists.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/models/Members.js"></script>
 </head>
 
 <body ng-controller="MainController as rol">
@@ -19,19 +20,64 @@
 	</div>
 </div>
 
+<!-- Markup for lists inside the dropzone. It's inside a seperate template
+	 because it will be used recursively. The dnd-list directive enables
+	 to drop elements into the referenced array. The dnd-draggable directive
+	 makes an element draggable and will transfer the object that was
+	 assigned to it. If an element was dragged away, you have to remove
+	 it from the original list yourself using the dnd-moved attribute -->
+<script type="text/ng-template" id="list.html">
+	<ul dnd-list="list">
+		<li ng-repeat="item in list"
+			dnd-draggable="item"
+			dnd-effect-allowed="move"
+			dnd-moved="list.splice($index, 1)"
+			dnd-selected="data.selected = item"
+			ng-class="{selected: data.selected === item}"
+			ng-include="item.type + '.html'">
+		</li>
+	</ul>
+</script>
+
+<!-- This template is responsible for rendering a container element. It uses
+	 the above list template to render each container column -->
+<script type="text/ng-template" id="container.html">
+	<div class="container-element box box-blue">
+		<h3>Container {{item.id}}</h3>
+		<div class="column" ng-repeat="list in item.columns" ng-include="'list.html'"></div>
+		<div class="clearfix"></div>
+	</div>
+</script>
+
+<!-- Template for a normal list item -->
+<script type="text/ng-template" id="item.html">
+	<div class="item">{{item.name}}</div>
+</script>
+
 <div class="container-fluid body">
+
 	<div class="row">
 
 		<div id="members" class="col-md-2 no-float">
+
 			<h2>Miembros del equipo</h2>
+
+			<div ng-repeat="(zone, list) in data.dropzones">
+				<div class="dropzone box box-yellow" ng-class="{{zone}}">
+					<!-- The dropzone also uses the list template -->
+					<h3>{{zone}}</h3>
+					<div ng-include="'list.html'"></div>
+				</div>
+			</div>
+
 			<ul>
 				<li ng-repeat="member in rol.members">
 					<div 
 						ng-class="{hovered: isHovered}"
 						ng-mouseenter = "isHovered = true"
 						ng-mouseleave = "isHovered = false">
-    						{{member.name}}
-    				</div>
+							{{member.name}}
+					</div>
 				</li>
 			</ul>
 		</div>

@@ -51,11 +51,11 @@ header
 }
 
 h2 {
-	font-size: 1.25em;
+	font-size: 20px;
 }
 
 h3 {
-	font-size: 1.15em;
+	font-size: 16px;
 }
 
 ul {
@@ -63,7 +63,7 @@ ul {
 }
 
 li {
-	font-size: 1em;
+	font-size: 14px;
 }
 
 li > div {

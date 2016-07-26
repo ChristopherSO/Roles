@@ -1,8 +1,8 @@
 (function() {
 
-	var app = angular.module('rol', ['rol-members']);
+	var app = angular.module('rol', ['rol-members', 'dndLists']);
 
-	app.controller('MainController', function(Member) {
+	app.controller('MainController', function(Member, $scope) {
 
 		this.members = [];
 
@@ -42,6 +42,86 @@
 			}
 			console.log(weeks);
 		});
+
+
+		$scope.data = {
+			selected: null,
+			templates: [
+				{type: "item", id: 2},
+				{type: "container", id: 1, columns: [[], []]}
+			],
+			dropzones: {
+				"Directores": [
+					{
+						"type": "item",
+						"name": "Hellen"
+					},
+					{
+						"type": "item",
+						"name": "Segura"
+					},
+					{
+						"type": "item",
+						"name": "Raúl"
+					}
+				],
+				"Músicos": [
+					{
+						"type": "item",
+						"name": "Christopher"
+					},
+					{
+						"type": "item",
+						"name": "Tony"
+					},
+					{
+						"type": "item",
+						"name": "Cristian"
+					},
+					{
+						"type": "item",
+						"name": "Carlos"
+					}
+				],
+				"Coristas": [
+					{
+						"type": "item",
+						"name": "Georgina"
+					},
+					{
+						"type": "item",
+						"name": "Michelle"
+					},
+					{
+						"type": "item",
+						"name": "David"
+					},
+					{
+						"type": "item",
+						"name": "Analive"
+					},
+					{
+						"type": "item",
+						"name": "Ester"
+					},
+					{
+						"type": "item",
+						"name": "Lissette"
+					}
+				],
+				"Sonidistas": [
+					{
+						"type": "item",
+						"name": "Jerry"
+					}
+				]
+			}
+		};
+
+		$scope.$watch('models.dropzones', function(model) {
+			$scope.modelAsJson = angular.toJson(model, true);
+		}, true);
+
 	});
 
 	var weeks = [];
@@ -92,8 +172,6 @@
 			isSoundman: true
 		}
 	];
-
-
 
 })();
 
